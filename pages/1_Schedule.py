@@ -25,8 +25,7 @@ if schedule.empty:
 st.subheader("Upcoming Game")
 
 upcoming_games = schedule[
-    (schedule["Status"] == "Preview")
-    & (schedule["Detailed_Status"] == "Scheduled")
+    schedule["Status"] != "Final"
 ].copy()
 
 upcoming_games = upcoming_games.sort_values("Date")

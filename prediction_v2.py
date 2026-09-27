@@ -532,26 +532,7 @@ def predict_dodgers_game_v2(
 def get_next_dodgers_game(schedule):
 
     upcoming_games = schedule[
-        (schedule["Status"] == "Preview")
-        & (schedule["Detailed_Status"] == "Scheduled")
-    ].copy()
-
-    upcoming_games = (
-        upcoming_games
-        .sort_values(["Date", "Game_ID"])
-        .reset_index(drop=True)
-    )
-
-    if upcoming_games.empty:
-        return None
-
-    return upcoming_games.iloc[0]
-
-def get_next_dodgers_game(schedule):
-
-    upcoming_games = schedule[
-        (schedule["Status"] == "Preview")
-        & (schedule["Detailed_Status"] == "Scheduled")
+        schedule["Status"] != "Final"
     ].copy()
 
     upcoming_games = (
